@@ -45,7 +45,7 @@ class CXH_HG_Model_Load:
         tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
         assert isinstance(tokenizer, PreTrainedTokenizer) or isinstance(tokenizer, PreTrainedTokenizerFast), f"Tokenizer is of type {type(tokenizer)}"
 
-        text_model = AutoModelForCausalLM.from_pretrained(MODEL_PATH, trust_remote_code=True)
+        text_model = AutoModelForCausalLM.from_pretrained(MODEL_PATH, trust_remote_code=True, device_map="auto")
         text_model.eval()
 
         self.pipe.text_model = text_model
